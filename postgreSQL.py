@@ -72,7 +72,7 @@ def reformate_data(data, option):
             reformated_row = row[1] + " | " + str(row[2]) + " | " + str(row[3])
             reformated_data.append(reformated_row)
 
-            return reformated_data, district, sum_population, mean_age, sum_men, sum_women
+        return reformated_data, district, sum_population, mean_age, sum_men, sum_women
 
     if option == "1":
         for town in data:
