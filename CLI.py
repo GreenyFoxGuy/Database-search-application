@@ -1,15 +1,15 @@
 from Database import Database
 
-def print_separators():
-    print("-"*20)
 
 def print_menu():
-    user_options = ["1 - Vyhledat obci",
-                    "2 - Vypsat obce v okresu",
-                    "3 - Ukončit",]
-    print_separators()
+    op_find_town, op_towns_in_district, op_district_list, op_district_stats, op_end = 1, 2, 3, 4, 0
+    user_options = ["1 - Hledat obec",
+                    "2 - Obce v okrese",
+                    "3 - Seznam okresů",
+                    "4 - Statistiky okresu",
+                    "0 - Ukončit",]
+    print("="*20+"\nDemografie ČR\n"+"="*20)
     print("\n".join(user_options))
-    print_separators()
 
 def main():
     while True:
@@ -19,13 +19,12 @@ def main():
         except ValueError:
             print("Please choose a valid option!")
             continue
-        if not 1 <= chosen_option <= 3:
+        if not 0 <= chosen_option <= 4:
             print("Please choose a valid option!")
             continue
 
-        if chosen_option == 1:
-            phrase_to_search = input("Vyhledat obci: ")
-            print_separators()
+        if chosen_option == op_find_town:
+            phrase_to_search = input("Hledat obec: ")
             print(f"Vyhledávání pro {phrase_to_search}:")
             try:
                 data = Database().search_town(phrase_to_search)
