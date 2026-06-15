@@ -1,7 +1,8 @@
 from Database import Database
 
+op_find_town, op_towns_in_district, op_list_districts, op_district_information, op_end = 1, 2, 3, 4, 0
+
 def print_menu():
-    op_find_town, op_towns_in_district, op_list_districts, op_district_information, op_end = 1, 2, 3, 4, 0
     user_options = ["1 - Hledat obec",
                     "2 - Obce v okrese",
                     "3 - Seznam okresů",
@@ -10,10 +11,12 @@ def print_menu():
     print("="*20+"\nDemografie ČR\n"+"="*20+"\n")
     print("\n".join(user_options))
 
-def print_result(data):
+def print_data(data):
 
+    print("\n")
     for row in data:
-        print(row)
+        print(sub_data)
+    print("\n")
 
 def find_town():
 
@@ -24,9 +27,9 @@ def find_town():
         data = Database().search_town(phrase_to_search)
     except IndexError:
         print("Nebyla nalezena žádná obec.")
-        continue
+        return
     
-    print_result(data)
+    print_data(data)
 
 def towns_in_district():
 
@@ -36,9 +39,9 @@ def towns_in_district():
         data = Database().get_district_info(district_id)
     except IndexError:
         print("Nebyl nalezen žádný okres.")
-        continue
+        return
 
-    print_result(data)
+    print_data(data)
 
 def list_districts():
 
@@ -46,9 +49,9 @@ def list_districts():
         data = Database().get_districts()
     except IndexError:
         print("Nebyl nalezen žádný okres.")
-        continue
+        return
 
-    print_result(data)
+    print_data(data)
 
 def district_information():
 
@@ -60,7 +63,7 @@ def district_information():
         print("Nebyl nalezen žádný okres.")
         continue
 
-    print_result(data)
+    print(f"\nPočet obyvatel: {data[0]}\nPrůměrný věk: {data[1]}\nPoměr muži/ženy: {data[2]} / {data[3]}\n")
 
 def main():
 

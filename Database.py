@@ -50,10 +50,10 @@ class Database:
     def get_district_mean_info(self, district_id):
         query = """
                 SELECT
-                    SUM(obce_pob.pocet_obyvatel) OVER () AS okres_obyvatel,
-                    AVG(obce_pob.prumerny_vek) OVER () AS okres_prumerny_vek,
-                    SUM(obce_pob.pocet_muzi) OVER () AS okres_muzi,
-                    SUM(obce_pob.pocet_zeny) OVER () AS okres_zeny
+                    SUM(obce_pob.pocet_obyvatel),
+                    AVG(obce_pob.prumerny_vek),
+                    SUM(obce_pob.pocet_muzi),
+                    SUM(obce_pob.pocet_zeny)
                 FROM obce_pob
                 WHERE okresy.id_okres = %s;
                 """
